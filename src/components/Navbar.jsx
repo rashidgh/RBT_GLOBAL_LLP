@@ -53,7 +53,7 @@ export default function Navbar({ theme, setTheme }) {
           className="flex items-center gap-3 cursor-pointer min-w-0"
         >
           <img
-            src="/public/logo.png"
+            src="/logo.png"
             alt="RBT Global LLP"
             className="w-12 h-12 rounded-full flex-shrink-0"
           />
