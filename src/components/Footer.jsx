@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Linkedin, Mail, Phone, ArrowUpRight } from "lucide-react";
+import { Mail, Phone, ArrowUpRight } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function Footer({ theme }) {
   const isNight = theme === "night";
@@ -72,11 +73,10 @@ export default function Footer({ theme }) {
               <li
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`cursor-pointer flex items-center gap-2 transition-colors duration-300 ${
-                  isNight
-                    ? "text-gray-300 hover:text-orange-400"
-                    : "text-gray-600 hover:text-orange-500"
-                }`}
+                className={`cursor-pointer flex items-center gap-2 transition-colors duration-300 ${isNight
+                  ? "text-gray-300 hover:text-orange-400"
+                  : "text-gray-600 hover:text-orange-500"
+                  }`}
               >
                 <ArrowUpRight size={14} />
                 {item.label}
@@ -114,31 +114,59 @@ export default function Footer({ theme }) {
             Contact
           </h4>
           <div className={isNight ? "space-y-3 text-gray-300" : "space-y-3 text-gray-600"}>
-            <p className="flex items-center gap-2">
-              <Mail size={16} /> sales@rbtgloballlp.com
-            </p>
-            <p className="flex items-center gap-2">
-              <Phone size={16} /> +91 9XXXXXXXXX
-            </p>
+            <a
+              href="mailto:danshpatna@gmail.com"
+              className="flex items-center gap-2 hover:underline"
+            >
+              <Mail size={16} /> danshpatna@gmail.com
+            </a>
+
+            <a
+              href="tel:+918084532942"
+              className="flex items-center gap-2 hover:underline"
+            >
+              <Phone size={16} /> +91 8084532942
+            </a>
           </div>
+
+
 
           {/* Social Icons */}
           <div className="flex gap-4 mt-6">
-            {[Linkedin, Mail, Phone].map((Icon, idx) => (
+            <div className="flex gap-4 mt-6">
+              {/* WhatsApp */}
               <motion.a
-                key={idx}
                 whileHover={{ scale: 1.15, y: -2 }}
-                href="#"
+                href="https://wa.me/918084532942"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`
-                  w-10 h-10 rounded-full flex items-center justify-center border transition-colors duration-300
-                  ${isNight
-                    ? "border-white/10 text-gray-300 hover:border-orange-400 hover:text-orange-400"
-                    : "border-gray-300 text-gray-600 hover:border-orange-500 hover:text-orange-500"}
-                `}
+      w-10 h-10 rounded-full flex items-center justify-center border transition-colors duration-300
+      ${isNight
+                    ? "border-white/10 text-green-400 hover:border-green-400 hover:bg-green-400/10"
+                    : "border-gray-300 text-green-600 hover:border-green-500 hover:bg-green-100"
+                  }
+    `}
               >
-                <Icon size={18} />
+                <FaWhatsapp size={18} />
               </motion.a>
-            ))}
+
+              {/* Email */}
+              <motion.a
+                whileHover={{ scale: 1.15, y: -2 }}
+                href="mailto:danshpatna@gmail.com"
+                className={`
+      w-10 h-10 rounded-full flex items-center justify-center border transition-colors duration-300
+      ${isNight
+                    ? "border-white/10 text-orange-400 hover:border-orange-400"
+                    : "border-gray-300 text-orange-600 hover:border-orange-500"
+                  }
+    `}
+              >
+                <Mail size={18} />
+              </motion.a>
+            </div>
+
           </div>
         </motion.div>
       </div>
@@ -149,9 +177,8 @@ export default function Footer({ theme }) {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ delay: 0.6 }}
-        className={`relative mt-16 pt-6 text-center text-xs border-t transition-colors duration-300 ${
-          isNight ? "border-white/10 text-gray-400" : "border-gray-200 text-gray-500"
-        }`}
+        className={`relative mt-16 pt-6 text-center text-xs border-t transition-colors duration-300 ${isNight ? "border-white/10 text-gray-400" : "border-gray-200 text-gray-500"
+          }`}
       >
         © 2025 RBT Global LLP. All rights reserved.
       </motion.div>

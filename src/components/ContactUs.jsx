@@ -1,24 +1,26 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, Linkedin, MapPin } from "lucide-react";
 import Footer from "./Footer";
+import { FaWhatsapp } from "react-icons/fa";
 
 /* Bakery / Raw Materials Contacts */
 const contacts = [
   {
-    name: "Sourav S",
-    role: "Business Development",
-    email: "sales@rbtgloballlp.com",
-    phone: "+91 91480 94352",
-    linkedin: "#",
+    name: "MD Danish",
+    role: "Cheif Executive Officer",
+    email: "danishpatna8084@gmail.com",
+    phone: "+91 8084532942",
+    whatsapp: "918084532942",
   },
   {
-    name: "Karthik S",
-    role: "Operations & Supply Chain",
-    email: "operations@rbtgloballlp.com",
-    phone: "+91 98864 93060",
-    linkedin: "#",
+    name: "Ejazul Haque",
+    role: "Cheif Operating Officer",
+    email: "ejeaz@gmail.com",
+    phone: "+91 9162737824",
+    whatsapp: "919162737824",
   },
 ];
+
 
 export default function ContactUs({ theme }) {
   const isNight = theme === "night";
@@ -28,10 +30,9 @@ export default function ContactUs({ theme }) {
       id="contact"
       className={`
         relative min-h-screen px-6 
-        ${
-          isNight
-            ? "bg-gradient-to-b from-[#1a1208] via-slate-900 to-black text-white"
-            : "bg-white"
+        ${isNight
+          ? "bg-gradient-to-b from-[#1a1208] via-slate-900 to-black text-white"
+          : "bg-white"
         }
       `}
     >
@@ -50,7 +51,7 @@ export default function ContactUs({ theme }) {
       </motion.h2>
 
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
-        
+
         {/* LEFT – CONTACT PERSONS */}
         <motion.div
           initial="hidden"
@@ -73,10 +74,9 @@ export default function ContactUs({ theme }) {
               transition={{ type: "spring", stiffness: 200 }}
               className={`
                 group relative flex items-center justify-between gap-6 rounded-xl p-6 transition-all
-                ${
-                  isNight
-                    ? "bg-white/5 backdrop-blur-md border border-white/10 hover:border-amber-400/50 shadow-lg"
-                    : "bg-white border border-slate-200 hover:border-amber-500 shadow-md hover:shadow-xl"
+                ${isNight
+                  ? "bg-white/5 backdrop-blur-md border border-white/10 hover:border-amber-400/50 shadow-lg"
+                  : "bg-white border border-slate-200 hover:border-amber-500 shadow-md hover:shadow-xl"
                 }
               `}
             >
@@ -87,21 +87,23 @@ export default function ContactUs({ theme }) {
                 </h3>
 
                 <p
-                  className={`text-sm mb-3 ${
-                    isNight ? "text-amber-400" : "text-amber-600"
-                  }`}
+                  className={`text-sm mb-3 ${isNight ? "text-amber-400" : "text-amber-600"
+                    }`}
                 >
                   {person.role}
                 </p>
 
                 <div
-                  className={`flex flex-col gap-2 text-sm ${
-                    isNight ? "text-slate-300" : "text-slate-600"
-                  }`}
+                  className={`flex flex-col gap-2 text-sm ${isNight ? "text-slate-300" : "text-slate-600"
+                    }`}
                 >
-                  <span className="flex items-center gap-2">
+                  <a
+                    href={`mailto:${person.email}`}
+                    className="flex items-center gap-2 hover:underline"
+                  >
                     <Mail size={16} /> {person.email}
-                  </span>
+                  </a>
+
                   <span className="flex items-center gap-2">
                     <Phone size={16} /> {person.phone}
                   </span>
@@ -110,18 +112,20 @@ export default function ContactUs({ theme }) {
 
               {/* RIGHT ICON */}
               <a
-                href={person.linkedin}
+                href={`https://wa.me/${person.whatsapp}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`
-                  w-12 h-12 rounded-full flex items-center justify-center transition
-                  ${
-                    isNight
-                      ? "border border-slate-700 text-slate-300 hover:border-amber-400 hover:text-amber-400"
-                      : "border border-slate-300 text-slate-600 hover:border-amber-500 hover:text-amber-600"
-                  }
-                `}
+    w-12 h-12 rounded-full flex items-center justify-center transition
+    ${isNight
+                    ? "border border-slate-700 text-green-400 hover:border-green-400 hover:bg-green-400/10"
+                    : "border border-slate-300 text-green-600 hover:border-green-500 hover:bg-green-100"}
+  `}
               >
-                <Linkedin size={20} />
+                <FaWhatsapp size={22} />
               </a>
+
+
             </motion.div>
           ))}
         </motion.div>
@@ -156,10 +160,9 @@ export default function ContactUs({ theme }) {
                 whileHover={{ y: -6 }}
                 className={`
                   rounded-2xl p-8 transition-all
-                  ${
-                    isNight
-                      ? "bg-white/5 backdrop-blur border border-white/10 shadow-xl"
-                      : "bg-white border border-slate-200 shadow-md hover:shadow-lg"
+                  ${isNight
+                    ? "bg-white/5 backdrop-blur border border-white/10 shadow-xl"
+                    : "bg-white border border-slate-200 shadow-md hover:shadow-lg"
                   }
                 `}
               >
@@ -167,9 +170,8 @@ export default function ContactUs({ theme }) {
                   {item.title}
                 </p>
                 <p
-                  className={`leading-relaxed ${
-                    isNight ? "text-slate-300" : "text-slate-600"
-                  }`}
+                  className={`leading-relaxed ${isNight ? "text-slate-300" : "text-slate-600"
+                    }`}
                 >
                   {item.text}
                 </p>
