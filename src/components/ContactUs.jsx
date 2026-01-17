@@ -1,130 +1,188 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, Linkedin } from "lucide-react";
+import { Mail, Phone, Linkedin, MapPin } from "lucide-react";
 import Footer from "./Footer";
 
+/* Bakery / Raw Materials Contacts */
 const contacts = [
-    {
-        name: "Sourav S",
-        role: "Business Head",
-        email: "sourav@achintyaaah.com",
-        phone: "+91 9148094352",
-        linkedin: "#",
-    },
-    {
-        name: "Karthik S",
-        role: "Technical Lead",
-        email: "karthik@achintyaaah.com",
-        phone: "+91 9886493060",
-        linkedin: "#",
-    },
+  {
+    name: "Sourav S",
+    role: "Business Development",
+    email: "sales@rbtgloballlp.com",
+    phone: "+91 91480 94352",
+    linkedin: "#",
+  },
+  {
+    name: "Karthik S",
+    role: "Operations & Supply Chain",
+    email: "operations@rbtgloballlp.com",
+    phone: "+91 98864 93060",
+    linkedin: "#",
+  },
 ];
 
-export default function ContactUs() {
-    return (
-        <section
-            id="contact"
-            className="relative min-h-screen  text-white px-6 py-24 overflow-hidden"
+export default function ContactUs({ theme }) {
+  const isNight = theme === "night";
+
+  return (
+    <section
+      id="contact"
+      className={`
+        relative min-h-screen px-6 
+        ${
+          isNight
+            ? "bg-gradient-to-b from-[#1a1208] via-slate-900 to-black text-white"
+            : "bg-white"
+        }
+      `}
+    >
+      {/* TITLE */}
+      <motion.h2
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="text-4xl md:text-5xl font-bold mb-20 text-center"
+      >
+        Get in{" "}
+        <span className={isNight ? "text-amber-400" : "text-amber-600"}>
+          Touch
+        </span>
+      </motion.h2>
+
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+        
+        {/* LEFT – CONTACT PERSONS */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.2 } },
+          }}
+          className="space-y-8"
         >
-            {/* Title */}
-            <motion.h2
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="text-4xl md:text-5xl font-bold mb-20"
+          {contacts.map((person) => (
+            <motion.div
+              key={person.name}
+              variants={{
+                hidden: { opacity: 0, x: -40 },
+                visible: { opacity: 1, x: 0 },
+              }}
+              whileHover={{ y: -6, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 200 }}
+              className={`
+                group relative flex items-center justify-between gap-6 rounded-xl p-6 transition-all
+                ${
+                  isNight
+                    ? "bg-white/5 backdrop-blur-md border border-white/10 hover:border-amber-400/50 shadow-lg"
+                    : "bg-white border border-slate-200 hover:border-amber-500 shadow-md hover:shadow-xl"
+                }
+              `}
             >
-                Let’s <span className="text-indigo-400">Connect</span>
-            </motion.h2>
+              {/* LEFT INFO */}
+              <div>
+                <h3 className="text-xl font-semibold">
+                  {person.name}
+                </h3>
 
-            <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
-                {/* LEFT – CONTACT CARDS */}
-                <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={{
-                        hidden: {},
-                        visible: {
-                            transition: { staggerChildren: 0.2 },
-                        },
-                    }}
-                    className="space-y-8"
+                <p
+                  className={`text-sm mb-3 ${
+                    isNight ? "text-amber-400" : "text-amber-600"
+                  }`}
                 >
-                    {contacts.map((person) => (
-                        <motion.div
-                            key={person.name}
-                            variants={{
-                                hidden: { opacity: 0, x: -40 },
-                                visible: { opacity: 1, x: 0 },
-                            }}
-                            whileHover={{ scale: 1.03 }}
-                            className="group relative flex items-center justify-between gap-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md p-6 hover:border-indigo-400 transition"
-                        >
-                            {/* Left Info */}
-                            <div>
-                                <h3 className="text-xl font-semibold">
-                                    {person.name}
-                                </h3>
-                                <p className="text-sm text-indigo-400 mb-3">
-                                    {person.role}
-                                </p>
+                  {person.role}
+                </p>
 
-                                <div className="flex flex-col gap-2 text-sm text-gray-300">
-                                    <span className="flex items-center gap-2">
-                                        <Mail size={16} /> {person.email}
-                                    </span>
-                                    <span className="flex items-center gap-2">
-                                        <Phone size={16} /> {person.phone}
-                                    </span>
-                                </div>
-                            </div>
-
-                            {/* Right Icon */}
-                            <a
-                                href={person.linkedin}
-                                className="w-12 h-12 rounded-full border border-gray-700 flex items-center justify-center group-hover:border-indigo-400 group-hover:text-indigo-400 transition"
-                            >
-                                <Linkedin size={20} />
-                            </a>
-                        </motion.div>
-                    ))}
-                </motion.div>
-
-                {/* RIGHT – DECORATIVE ANIMATION */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8 }}
-                    className="relative hidden lg:block"
+                <div
+                  className={`flex flex-col gap-2 text-sm ${
+                    isNight ? "text-slate-300" : "text-slate-600"
+                  }`}
                 >
-                    <div className="absolute inset-0 bg-indigo-500/20 blur-[120px] rounded-full" />
-                    <div className="flex flex-col gap-4">
-                        <div className="relative border border-white/10 rounded-2xl p-8 backdrop-blur bg-white/5">
-                        <p className="text-2xl font-semibold mb-4">
-                            We’d love to hear from you
-                        </p>
-                        <p className="text-gray-400 leading-relaxed">
-                            Whether you’re looking to build a product, scale your
-                            business, or just want to say hello — our team is ready.
-                        </p>
-                    </div>
-                    <div className="relative border border-white/10 rounded-2xl p-8 backdrop-blur bg-white/5">
-                        <p className="text-2xl font-semibold mb-4">
-                            Start a Conversation
-                        </p>
-                        <p className="text-gray-400 leading-relaxed">
-                            Reach out to discuss your business goals, technical challenges,
-                            or partnership opportunities. Our team is here to help you move forward.
-                        </p>
+                  <span className="flex items-center gap-2">
+                    <Mail size={16} /> {person.email}
+                  </span>
+                  <span className="flex items-center gap-2">
+                    <Phone size={16} /> {person.phone}
+                  </span>
+                </div>
+              </div>
 
-                    </div>
-                    </div>
-                </motion.div>
-            </div>
+              {/* RIGHT ICON */}
+              <a
+                href={person.linkedin}
+                className={`
+                  w-12 h-12 rounded-full flex items-center justify-center transition
+                  ${
+                    isNight
+                      ? "border border-slate-700 text-slate-300 hover:border-amber-400 hover:text-amber-400"
+                      : "border border-slate-300 text-slate-600 hover:border-amber-500 hover:text-amber-600"
+                  }
+                `}
+              >
+                <Linkedin size={20} />
+              </a>
+            </motion.div>
+          ))}
+        </motion.div>
 
-           <div className="mt-36">
-            <Footer />
-           </div>
-        </section>
-    );
+        {/* RIGHT – BUSINESS INFO */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="relative hidden lg:block"
+        >
+          {isNight && (
+            <div className="absolute inset-0 bg-amber-500/20 blur-[120px] rounded-full" />
+          )}
+
+          <div className="relative flex flex-col gap-6">
+            {[
+              {
+                title: "Bulk Orders & Supply",
+                text:
+                  "Looking for reliable bakery raw material suppliers? We support bulk orders with consistent quality and timely delivery.",
+              },
+              {
+                title: "Partner With Us",
+                text:
+                  "Whether you are a bakery, distributor, or food manufacturer, we’d love to explore long-term partnerships.",
+              }
+            ].map((item) => (
+              <motion.div
+                key={item.title}
+                whileHover={{ y: -6 }}
+                className={`
+                  rounded-2xl p-8 transition-all
+                  ${
+                    isNight
+                      ? "bg-white/5 backdrop-blur border border-white/10 shadow-xl"
+                      : "bg-white border border-slate-200 shadow-md hover:shadow-lg"
+                  }
+                `}
+              >
+                <p className="text-2xl font-semibold mb-4">
+                  {item.title}
+                </p>
+                <p
+                  className={`leading-relaxed ${
+                    isNight ? "text-slate-300" : "text-slate-600"
+                  }`}
+                >
+                  {item.text}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+
+      {/* FOOTER */}
+      <div className="mt-36">
+        <Footer theme={theme} />
+      </div>
+    </section>
+  );
 }

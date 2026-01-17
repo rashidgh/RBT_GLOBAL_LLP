@@ -1,27 +1,33 @@
-import React from 'react'
-import Navbar from '../components/Navbar'
-import HeroCarousel from '../components/HeroCarosel'
-import Services from '../components/Services'
-import ContactUs from '../components/ContactUs'
-import OurClients from '../components/OurClients'
-import AboutUs from '../components/AboutUs'
-import ScrollToTop from '../components/ScrollToTop'
-import Footer from '../components/Footer'
-import { GlobalProvider } from '../api/ContextApi'
+import React from "react";
+import Navbar from "../components/Navbar";
+import HeroCarousel from "../components/HeroCarosel";
+import ContactUs from "../components/ContactUs";
+import AboutUs from "../components/AboutUs";
+import ScrollToTop from "../components/ScrollToTop";
+import useTheme from "../hooks/useTheme";
+import OurProducts from "../components/OurProducts";
+import RawMaterials from "../components/RawMaterial";
 
-const Dasboard = () => {
-    const { isNightMode } = React.useContext(GlobalProvider);
-    return (
-        <div className={` ${isNightMode ? 'bg-gradient-to-b from-slate-950 via-slate-900 to-black' : 'bg-white text-black'}`}>
-            <Navbar />
-            <HeroCarousel />
-            <OurClients />
-            <Services />
-            <AboutUs />
-            <ContactUs />
-            <ScrollToTop />
-        </div>
-    )
-}
+const Dashboard = () => {
+  const [theme, setTheme] = useTheme(); // ✅ SINGLE SOURCE
 
-export default Dasboard;
+  return (
+    <div
+      className={`min-h-screen w-full overflow-x-hidden transition-colors duration-300 ${theme === "night"
+          ? "bg-gradient-to-b from-slate-950 via-slate-900 to-black text-white"
+          : "bg-white text-black"
+        }`}
+    >
+      <Navbar theme={theme} setTheme={setTheme} />
+
+      <HeroCarousel />
+      <OurProducts theme={theme} />
+      <RawMaterials theme={theme} />
+      <AboutUs theme={theme} />
+      <ContactUs theme={theme} />
+      <ScrollToTop />
+    </div>
+  );
+};
+
+export default Dashboard;

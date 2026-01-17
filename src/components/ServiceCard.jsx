@@ -1,46 +1,97 @@
-import { motion } from "framer-motion";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
-export default function ServiceCard({ icon: Icon, title, description, index }) {
+export default function ServiceCard({ icon: Icon, title, description, index, theme }) {
+  const isDay = theme !== "night";
+
+  useEffect(() => {
+    AOS.init({
+      once: true,
+      duration: 600,
+      easing: "ease-out",
+    });
+  }, []);
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.15 }}
-      whileHover={{ y: -10 }}
-      className="group relative cursor-pointer"
+    <div
+      data-aos={window.innerWidth >= 768 ? "zoom-in" : "fade-right"} // zoom-out for desktop, fade-right for mobile
+      data-aos-delay={index * 150}
+      className="group relative cursor-pointer mb-6"
     >
-      {/* OUTER GLOW */}
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-sky-500/30 to-indigo-500/30 opacity-0 group-hover:opacity-100 blur-xl transition duration-300"></div>
+      {/* OUTER GLOW (night only) */}
+      {!isDay && (
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-sky-500/30 to-indigo-500/30 opacity-0 group-hover:opacity-100 blur-xl transition duration-300" />
+      )}
 
       {/* CARD */}
-      <div className="relative z-10 h-full rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md overflow-hidden transition-all duration-300 group-hover:border-indigo-400/40 group-hover:shadow-xl group-hover:shadow-indigo-500/20">
-
-        {/* HOVER GRADIENT OVERLAY */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-sky-500/10 via-transparent to-indigo-500/10 opacity-0 group-hover:opacity-100 transition duration-300" />
+      <div
+        className={`
+          relative z-10 h-full rounded-2xl p-6 overflow-hidden transition-all duration-300
+          ${
+            isDay
+              ? "bg-white border border-slate-200 shadow-md hover:shadow-xl hover:border-indigo-400"
+              : "bg-white/5 border border-white/10 backdrop-blur-md hover:border-indigo-400/40 hover:shadow-xl hover:shadow-indigo-500/20"
+          }
+        `}
+      >
+        {/* HOVER OVERLAY */}
+        <div
+          className={`
+            pointer-events-none absolute inset-0 transition duration-300 opacity-0 group-hover:opacity-100
+            ${
+              isDay
+                ? "bg-gradient-to-br from-indigo-50 via-transparent to-sky-50"
+                : "bg-gradient-to-br from-sky-500/10 via-transparent to-indigo-500/10"
+            }
+          `}
+        />
 
         {/* CONTENT */}
         <div className="relative z-10">
           {/* ICON */}
-          <motion.div
-            whileHover={{ rotate: 6, scale: 1.1 }}
-            transition={{ type: "spring", stiffness: 300 }}
-            className="w-14 h-14 mb-4 rounded-full bg-gradient-to-br from-indigo-400 to-sky-400 flex items-center justify-center"
+          <div
+            className={`
+              w-14 h-14 mb-4 rounded-full flex items-center justify-center transition-transform
+              ${
+                isDay
+                  ? "bg-indigo-100 text-indigo-600 group-hover:scale-110"
+                  : "bg-gradient-to-br from-indigo-400 to-sky-400 text-black group-hover:scale-110"
+              }
+            `}
           >
-            <Icon size={26} className="text-black" />
-          </motion.div>
+            <Icon size={26} />
+          </div>
 
           {/* TITLE */}
-          <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-indigo-300 transition">
+          <h3
+            className={`
+              text-xl font-semibold mb-2 transition
+              ${
+                isDay
+                  ? "text-slate-800 group-hover:text-indigo-600"
+                  : "text-white group-hover:text-indigo-300"
+              }
+            `}
+          >
             {title}
           </h3>
 
           {/* DESCRIPTION */}
-          <p className="text-sm text-gray-400 leading-relaxed group-hover:text-gray-200 transition">
+          <p
+            className={`
+              text-sm leading-relaxed transition
+              ${
+                isDay
+                  ? "text-slate-600 group-hover:text-slate-700"
+                  : "text-gray-400 group-hover:text-gray-200"
+              }
+            `}
+          >
             {description}
           </p>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

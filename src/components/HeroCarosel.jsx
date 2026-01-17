@@ -1,34 +1,45 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { motion } from "framer-motion";
+import AOS from "aos";
 
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation"; // ✅ Import navigation styles
 import AnimatedText from "./AnimatedText";
+import { useEffect } from "react";
 
 const slides = [
   {
-    title: "IT Solutions for Modern Businessss",
-    desc: "We build scalable, secure and high-performance digital products.",
-    image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
+    title: "Premium Bakery Raw Materials",
+    desc: "High-quality flour, cocoa, yeast, and ingredients trusted by professional bakeries.",
+    image: "https://images.unsplash.com/photo-1608198093002-ad4e005484ec",
   },
   {
-    title: "Web & Mobile App Development",
-    desc: "Custom applications tailored to your business needs.",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+    title: "Reliable Bulk Supply for Bakeries",
+    desc: "Consistent supply of bakery essentials for shops, factories, and food businesses.",
+    image: "https://images.unsplash.com/photo-1549931319-a545dcf3bc73",
   },
   {
-    title: "Cloud & Enterprise Services",
-    desc: "Transform your infrastructure with cloud-ready solutions.",
-    image: "https://images.unsplash.com/photo-1556761175-4b46a572b786",
+    title: "Quality Ingredients. Better Baking.",
+    desc: "We source and deliver raw materials that ensure taste, texture, and consistency.",
+    image: "https://images.unsplash.com/photo-1509440159596-0249088772ff",
   },
 ];
 
+
 export default function HeroCarousel() {
+  useEffect(() => {
+      AOS.init({
+        once: true,
+        duration: 600,
+        easing: "ease-out",
+      });
+      AOS.refresh();
+    }, []);
   return (
-    <div className="pt-16 w-full" id="home">
-      <div className="relative overflow-hidden h-[50vh] sm:h-[60vh] md:h-[70vh]">
+    <div className="pt-16 w-full" id="home" data-aos="zoom-in">
+      <div className="relative overflow-hidden h-[50vh] sm:h-[60vh] md:h-[80vh]">
         <Swiper
           modules={[Autoplay, Pagination, Navigation]} // ✅ Add Navigation module
           autoplay={{ delay: 5000, disableOnInteraction: false }}

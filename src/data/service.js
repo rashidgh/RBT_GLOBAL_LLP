@@ -1,40 +1,47 @@
-import { Code, Layout, Monitor, Server, Settings, Smartphone } from "lucide-react";
+import {
+  Wheat,
+  Droplet,
+  Flame,
+  Box,
+  Layers,
+  ShoppingBag,
+} from "lucide-react";
 
-export const services = [
+export const rawMaterials = [
   {
-    title: "Full Stack Development",
+    icon: Wheat,
+    title: "Premium Wheat Flour",
     description:
-      "We implement complete development solutions from idea to funding-ready products.",
-    icon: Code,
+      "High-grade refined and whole wheat flour suitable for bread, cakes, and pastries.",
   },
   {
-    title: "UX/UI",
+    icon: Flame,
+    title: "Instant Dry Yeast",
     description:
-      "We craft intuitive user experiences through deep user research and validation.",
-    icon: Layout,
+      "Reliable yeast for consistent fermentation, perfect rise, and better texture.",
   },
   {
-    title: "Backend Development",
+    icon: Droplet,
+    title: "Cocoa & Chocolate Products",
     description:
-      "Robust, scalable backend systems focused on performance and security.",
-    icon: Server,
+      "Rich cocoa powder, chocolate compounds, and baking chips for premium taste.",
   },
   {
-    title: "Frontend Development",
+    icon: Layers,
+    title: "Baking Improvers",
     description:
-      "User-centric frontend experiences integrated seamlessly with backend APIs.",
-    icon: Monitor,
+      "Improvers that enhance softness, shelf life, and volume of baked products.",
   },
   {
-    title: "Hybrid App Development",
+    icon: Box,
+    title: "Butter & Margarine",
     description:
-      "Cross-platform mobile apps using React, Flutter, Ionic and Xamarin.",
-    icon: Smartphone,
+      "High-quality fats specially designed for baking and industrial use.",
   },
   {
-    title: "Automation Testing",
+    icon: ShoppingBag,
+    title: "Bread & Cake Mixes",
     description:
-      "Automated testing solutions for fast, reliable and scalable releases.",
-    icon: Settings,
+      "Ready-to-use mixes for consistent quality and faster production.",
   },
 ];

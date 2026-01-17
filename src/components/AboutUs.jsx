@@ -1,130 +1,158 @@
-import { motion } from "framer-motion";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { features } from "../data/footerData";
 
-const container = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-};
+export default function AboutUs({ theme }) {
+  const isDay = theme !== "night";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-};
+  useEffect(() => {
+    AOS.init({
+      once: true,
+      duration: 600,
+      easing: "ease-out",
+    });
+    AOS.refresh();
+  }, []);
 
-export default function AboutUs() {
   return (
     <section
       id="about"
-      className="relative  text-white overflow-hidden"
+      className={`relative ${
+        isDay
+          ? "bg-white text-slate-900"
+          : "bg-gradient-to-b from-[#1a1208] via-slate-900 to-black text-white"
+      }`}
     >
       {/* BACKGROUND DECOR */}
-      <div className="absolute top-1/3 -right-32 w-96 h-96 rounded-full blur-3xl" />
+      {!isDay && (
+        <>
+          <div className="absolute top-1/3 -right-32 w-[28rem] h-[28rem] bg-amber-500/20 rounded-full blur-[120px]" />
+          <div className="absolute bottom-20 -left-32 w-[24rem] h-[24rem] bg-orange-500/10 rounded-full blur-[120px]" />
+        </>
+      )}
 
       {/* HERO */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="relative py-10 text-center"
-      >
+      <div className="relative text-center pt-20">
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
-          About <span className="text-indigo-400">Achintyaah</span>
+          About{" "}
+          <span className={isDay ? "text-amber-600" : "text-amber-400"}>
+            RBT Global LLP
+          </span>
         </h1>
-        <p className="mt-4 text-gray-300 text-sm tracking-wide">
+        <p
+          className={`mt-4 text-sm tracking-wide ${
+            isDay ? "text-slate-500" : "text-slate-400"
+          }`}
+        >
           Home / About Us
         </p>
-      </motion.div>
+      </div>
 
       {/* WHO WE ARE */}
-      <motion.div
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        className="relative max-w-7xl mx-auto px-6 py-24 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center"
-      >
+      <div className="relative max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        
         {/* IMAGE */}
-        <motion.div variants={fadeUp} className="relative group">
-          <motion.img
-            src="https://community.thriveglobal.com/wp-content/uploads/2018/08/businesswomen.jpg"
-            alt="Team"
-            className="rounded-2xl shadow-2xl"
-            whileHover={{ scale: 1.04 }}
-            transition={{ duration: 0.6 }}
+        <div
+          data-aos={window.innerWidth >= 768 ? "zoom-in" : "fade-left"}
+          className={`relative group rounded-2xl overflow-hidden transition-all duration-300 ${
+            isDay
+              ? "border border-slate-200 shadow-lg hover:shadow-xl"
+              : "border border-white/10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.8)]"
+          }`}
+        >
+          <img
+            src="https://static.vecteezy.com/system/resources/previews/007/902/542/non_2x/portrait-of-african-american-female-chef-in-white-cooking-uniform-looking-at-camera-with-cheerful-smile-and-proud-with-tray-of-bread-in-kitchen-pastry-foods-professional-and-fresh-bakery-occupation-photo.jpg"
+            alt="Bakery Raw Materials"
+            className="rounded-2xl w-full"
           />
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-indigo-500/20 to-transparent opacity-0 group-hover:opacity-100 transition" />
-        </motion.div>
+          {!isDay && (
+            <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/30 via-transparent to-orange-500/20 opacity-0 group-hover:opacity-100 transition duration-500" />
+          )}
+        </div>
 
         {/* TEXT */}
-        <motion.div variants={fadeUp}>
+        <div
+          data-aos={window.innerWidth >= 768 ? "zoom-in" : "fade-left"}
+        >
           <h2 className="text-3xl font-bold mb-6">
-            Who <span className="text-indigo-400">We Are</span>
+            Who{" "}
+            <span className={isDay ? "text-amber-600" : "text-amber-400"}>
+              We Are
+            </span>
           </h2>
-          <p className="text-gray-300 leading-relaxed mb-5">
-            <span className="font-semibold text-white">
-              ACHINTYAAAH GROUP
-            </span>{" "}
-            delivers innovative, reliable, and scalable IT solutions across
-            healthcare, finance, logistics, retail, and government sectors.
+
+          <p
+            className={`leading-relaxed mb-5 ${
+              isDay ? "text-slate-700" : "text-slate-300"
+            }`}
+          >
+            <span className="font-semibold">RBT GLOBAL LLP</span> is a trusted
+            supplier of premium bakery raw materials, serving bakeries,
+            manufacturers, and food businesses with consistent quality
+            ingredients.
           </p>
-          <p className="text-gray-400 leading-relaxed">
-            With deep technical expertise and a client-first approach, we help
-            businesses achieve long-term growth and digital excellence.
+
+          <p
+            className={`leading-relaxed ${
+              isDay ? "text-slate-600" : "text-slate-400"
+            }`}
+          >
+            From flour and yeast to cocoa and baking improvers, we help our
+            partners deliver better taste, texture, and freshness in every bake.
           </p>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
       {/* CORE VALUES */}
-      <div className="relative py-28">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center text-3xl font-bold mb-20"
-        >
-          Our <span className="text-indigo-400">Core Values</span>
-        </motion.h2>
+      <div className="relative pb-28">
+        <h2 className="text-center text-3xl font-bold mb-20">
+          Our{" "}
+          <span className={isDay ? "text-amber-600" : "text-amber-400"}>
+            Core Values
+          </span>
+        </h2>
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12"
-        >
-          {features.map((item) => (
-            <motion.div
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
+          {features.map((item, index) => (
+            <div
               key={item.title}
-              variants={fadeUp}
-              whileHover={{ y: -12 }}
-              transition={{ type: "spring", stiffness: 200 }}
-              className="relative rounded-2xl p-8 text-center
-                         bg-white/10 backdrop-blur-xl border border-white/10
-                         shadow-xl"
+              data-aos={window.innerWidth >= 768 ? "zoom-in" : "fade-right"}
+              data-aos-delay={index * 150}
+              className={`rounded-2xl p-8 text-center transition-all cursor-pointer ${
+                isDay
+                  ? "bg-white border border-slate-200 shadow-md hover:shadow-xl"
+                  : "bg-white/5 border border-white/10 backdrop-blur-xl shadow-xl hover:border-amber-400/40"
+              }`}
             >
-              {/* ICON */}
-              <motion.div
-                whileHover={{ rotate: 10, scale: 1.1 }}
-                className="w-16 h-16 mx-auto mb-6 rounded-full
-                           bg-indigo-500/20 flex items-center justify-center"
+              <div
+                className={`w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center ${
+                  isDay
+                    ? "bg-amber-100 text-amber-600"
+                    : "bg-amber-500/20"
+                }`}
               >
-                <item.icon size={30} className="text-indigo-400" />
-              </motion.div>
+                <item.icon size={30} />
+              </div>
 
-              <h3 className="text-xl font-semibold mb-4">
+              <h3
+                className={`text-xl font-semibold mb-4 ${
+                  isDay ? "text-slate-800" : "text-white"
+                }`}
+              >
                 {item.title}
               </h3>
-              <p className="text-gray-300 text-sm leading-relaxed">
+
+              <p
+                className={`text-sm leading-relaxed ${
+                  isDay ? "text-slate-600" : "text-slate-300"
+                }`}
+              >
                 {item.text}
               </p>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
