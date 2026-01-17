@@ -55,7 +55,7 @@ export default function Navbar({ theme, setTheme }) {
           <img
             src="/public/logo.png"
             alt="RBT Global LLP"
-            className="w-14 h-14 rounded-full flex-shrink-0"
+            className="w-12 h-12 rounded-full flex-shrink-0"
           />
 
           <span
@@ -163,8 +163,8 @@ export default function Navbar({ theme, setTheme }) {
                   <button
                     onClick={toggleTheme}
                     className={`p-2 rounded-full ${isNight
-                        ? "bg-white/10 hover:bg-white/20"
-                        : "bg-gray-100 hover:bg-gray-200"
+                      ? "bg-white/10 hover:bg-white/20"
+                      : "bg-gray-100 hover:bg-gray-200"
                       }`}
                   >
                     {isNight ? <Sun size={18} /> : <Moon size={18} />}
@@ -173,8 +173,8 @@ export default function Navbar({ theme, setTheme }) {
                   <button
                     onClick={() => setOpen(false)}
                     className={`p-2 rounded-full ${isNight
-                        ? "bg-white/10 hover:bg-white/20"
-                        : "bg-gray-100 hover:bg-gray-200"
+                      ? "bg-white/10 hover:bg-white/20"
+                      : "bg-gray-100 hover:bg-gray-200"
                       }`}
                   >
                     <X size={20} />
