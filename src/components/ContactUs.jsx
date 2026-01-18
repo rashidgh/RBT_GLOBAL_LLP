@@ -16,8 +16,8 @@ const contacts = [
     name: "Ejazul Haque",
     role: "Cheif Operating Officer",
     email: "ejeaz@gmail.com",
-    phone: "+91 9162737824",
-    whatsapp: "919162737824",
+    phone: "+91 8825397779",
+    whatsapp: "8825397779",
   },
 ];
 
