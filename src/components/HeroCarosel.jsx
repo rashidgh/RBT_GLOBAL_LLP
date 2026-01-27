@@ -2,41 +2,25 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { motion } from "framer-motion";
 import AOS from "aos";
-
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation"; // ✅ Import navigation styles
 import AnimatedText from "./AnimatedText";
 import { useEffect } from "react";
+import { slides } from "@/data/heroSlides";
 
-const slides = [
-  {
-    title: "Premium Bakery Raw Materials",
-    desc: "High-quality flour, cocoa, yeast, and ingredients trusted by professional bakeries.",
-    image: "https://images.unsplash.com/photo-1608198093002-ad4e005484ec",
-  },
-  {
-    title: "Reliable Bulk Supply for Bakeries",
-    desc: "Consistent supply of bakery essentials for shops, factories, and food businesses.",
-    image: "https://images.unsplash.com/photo-1549931319-a545dcf3bc73",
-  },
-  {
-    title: "Quality Ingredients. Better Baking.",
-    desc: "We source and deliver raw materials that ensure taste, texture, and consistency.",
-    image: "https://images.unsplash.com/photo-1509440159596-0249088772ff",
-  },
-];
+
 
 
 export default function HeroCarousel() {
   useEffect(() => {
-      AOS.init({
-        once: true,
-        duration: 600,
-        easing: "ease-out",
-      });
-      AOS.refresh();
-    }, []);
+    AOS.init({
+      once: true,
+      duration: 600,
+      easing: "ease-out",
+    });
+    AOS.refresh();
+  }, []);
   return (
     <div className="pt-16 w-full" id="home" data-aos="zoom-in">
       <div className="relative overflow-hidden h-[50vh] sm:h-[60vh] md:h-[80vh]">

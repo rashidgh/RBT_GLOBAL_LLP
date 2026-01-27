@@ -15,6 +15,7 @@ body {
   display: flex !important;
   align-items: center;
   justify-content: center;
+  color: #d97706 !important;
 }
 
 /* Reduce arrow icon size */

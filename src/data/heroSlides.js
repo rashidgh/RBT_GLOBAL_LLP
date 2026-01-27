@@ -1,17 +1,17 @@
-export const heroSlides = [
+export const slides = [
   {
-    title: "IT Solutions for Modern Business",
-    desc: "We build scalable, secure and high-performance digital products.",
-    image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
+    title: "Premium Bakery Raw Materials",
+    desc: "High-quality flour, cocoa, yeast, and ingredients trusted by professional bakeries.",
+    image: "https://images.unsplash.com/photo-1608198093002-ad4e005484ec",
   },
   {
-    title: "Web & Mobile App Development",
-    desc: "Custom applications tailored to your business needs.",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+    title: "Reliable Bulk Supply for Bakeries",
+    desc: "Consistent supply of bakery essentials for shops, factories, and food businesses.",
+    image: "https://images.unsplash.com/photo-1549931319-a545dcf3bc73",
   },
   {
-    title: "Cloud & Enterprise Services",
-    desc: "Transform your infrastructure with cloud-ready solutions.",
-    image: "https://images.unsplash.com/photo-1556761175-4b46a572b786",
+    title: "Quality Ingredients. Better Baking.",
+    desc: "We source and deliver raw materials that ensure taste, texture, and consistency.",
+    image: "https://images.unsplash.com/photo-1509440159596-0249088772ff",
   },
 ];
